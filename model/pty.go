@@ -24,4 +24,6 @@ type StationCalcInfo struct {
 	PTYStation
 	Distance string `json:"distance"`
 	Duration string `json:"duration"`
+	TranTime string `json:"trantime"` // 交通
 }
+

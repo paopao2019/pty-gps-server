@@ -78,6 +78,7 @@ func CalculateStation(originalLocation string) (err error, list interface{}){
 	for _, v := range stationList {
 		// 重组数据
 		err, distance, duration := uitls.GetDistance(originalLocation, v.Location)
+		err, tranTime := uitls.GetTranTime(originalLocation, v.Location)
 		if err != nil {
 			distance = "none"
 			duration = "none"
@@ -87,7 +88,8 @@ func CalculateStation(originalLocation string) (err error, list interface{}){
 		calcResult = append(calcResult, model.StationCalcInfo{
 			PTYStation: v,
 			Distance: distance,
-			Duration: duration,
+			Duration: duration, // 驾车时间
+			TranTime: tranTime, // 乘坐交通的最优时间 预估时间
 		})
 	}
 	return  err, calcResult
